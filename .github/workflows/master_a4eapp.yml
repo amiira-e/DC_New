@@ -64,7 +64,15 @@ jobs:
         with:
           path: models
 
-
+      - name: Login via Az module
+        uses: azure/login@v1
+        with:
+         creds: ${{secrets.AZURE_CREDENTIALS}}
+         enable-AzPSSession: true 
+     
+      - run: |
+         Get-AzVM -ResourceGroupName "DistCentre"
+        
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
