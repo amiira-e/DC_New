@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace AdtGaDemo.Web
 {
@@ -64,7 +65,8 @@ namespace AdtGaDemo.Web
 
         if (env.IsDevelopment())
         {
-          spa.UseReactDevelopmentServer(npmScript: "start");
+              spa.Options.StartupTimeout = TimeSpan.FromSeconds(180);
+              spa.UseReactDevelopmentServer(npmScript: "start");
         }
       });
     }
